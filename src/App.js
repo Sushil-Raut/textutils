@@ -1,4 +1,3 @@
-import './App.css';
 import About from './Components/About';
 import Alert from './Components/Aleart';
 import Navbar from './Components/Navbar';

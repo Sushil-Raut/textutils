@@ -3,6 +3,8 @@ import React, { useState } from "react";
 export default function TextForm(props) {
   const [text, setText] = useState(""); // Initial state
 
+
+
   const handleOnChange = (event) => {
     setText(event.target.value); // Update text state with user input
   };
@@ -39,6 +41,17 @@ export default function TextForm(props) {
     props.showAlert("Extra spaces removed", "Success");
   };
 
+
+  const handleReadAloud = (language = "en-US") => {
+    let speech = new SpeechSynthesisUtterance();
+    speech.text = text;
+    speech.lang = language; // Set language
+    speech.rate = 1; // Speed (1 is normal)
+    speech.pitch = 1; // Pitch (1 is normal)
+    
+    window.speechSynthesis.speak(speech);
+};
+
   return (
     <>
       <div className="container my-3" style={{ color: props.mode === "dark" ? "white" : "#010a16" }}>
@@ -69,6 +82,12 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-secondary my-2 ms-2" onClick={handleExtraSpace}>
           Remove Extra Spaces
+        </button>
+
+     
+
+        <button className="btn btn-secondary my-2 ms-2" onClick={handleReadAloud}>
+        Read Aloud
         </button>
       </div>
 
