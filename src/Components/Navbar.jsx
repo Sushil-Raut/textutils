@@ -1,14 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
+import React from "react";
+import PropTypes from "prop-types";
+import "./Navbar.css"; // Import custom styles
 
 export default function Navbar(props) {
   return (
     <>
-      <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
+      <nav
+        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode} custom-navbar`}
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
-            {props.title} {/* Displaying prop */}
+            {props.title}
           </a>
           <button
             className="navbar-toggler"
@@ -28,33 +30,27 @@ export default function Navbar(props) {
                   Home
                 </a>
               </li>
-              {/* <li className="nav-item">
-                <a className="nav-link" href="/">
-                  {props.about} 
-                </a>
-              </li> */}
             </ul>
-            <form className="d-flex">
-              {/* Placeholder for future search functionality */}
-            </form>
 
-            
-
-            {/* First Switch */}
-            <div className={`form-check form-switch text-${props.mode === 'light' ? 'lightseagreen' : 'light'}`}>
+            <div
+              className={`form-check form-switch d-flex align-items-center text-${
+                props.mode === "light" ? "dark" : "light"
+              }`}
+            >
               <input
-                className="form-check-input"
+                className="form-check-input me-2"
                 onClick={props.toggleMode}
                 type="checkbox"
                 id="flexSwitchCheckDefault2"
-                style={{
-                  backgroundColor: props.mode === 'light' ? 'grey' : 'black', // Dynamic background
-                  borderColor: props.mode === 'light' ? 'black' : 'lightseagreen', // Optional border color
-                }}
               />
-              <label className="form-check-label" htmlFor="flexSwitchCheckDefault2">
-                 DarkMode
-              </label>
+              {props.mode === "light" && (
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckDefault2"
+                >
+                  🌙
+                </label>
+              )}
             </div>
           </div>
         </div>
@@ -62,15 +58,3 @@ export default function Navbar(props) {
     </>
   );
 }
-
-// Defining prop types
-Navbar.propTypes = {
-  title: PropTypes.string.isRequired,
-  about: PropTypes.string.isRequired,
-};
-
-// Setting default props
-Navbar.defaultProps = {
-  title: "Set Title Here",
-  about: "About Us",
-};
